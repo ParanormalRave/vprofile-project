@@ -2,7 +2,7 @@ name: vProfile CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ local ]
   workflow_dispatch:
 jobs:
   test:
