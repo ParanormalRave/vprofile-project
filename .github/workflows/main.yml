@@ -66,3 +66,10 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
+      - name: Upload artifact to S3
+        run: |
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          VERSION_LABEL=vprofile-$TIMESTAMP
+          aws s3 cp target/vprofile-v2.war s3://${{ secrets.S3_BUCKET }}/$VERSION_LABEL.war
+          echo "VERSION_LABEL=$VERSION_LABEL" >> $GITHUB_ENV
+      
